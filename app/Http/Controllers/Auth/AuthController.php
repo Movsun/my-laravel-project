@@ -7,6 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use App\Mailers\AppMailer;
+use Session;
 
 class AuthController extends Controller
 {
@@ -57,18 +60,55 @@ class AuthController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Show the application registration form.
      *
-     * @param  array  $data
-     * @return User
+     * @return \Illuminate\Http\Response
      */
-    protected function create(array $data)
+    public function showRegistrationForm()
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return view('auth.register');
+    }
+
+    /**
+    *
+    *
+    *
+    *
+    */
+
+    public function register(Request $request, AppMailer $mailer)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = User::create($request->all());
+
+        $confirmation_code = $user->token;
+
+        $mailer->sendEmailConfirmationTo($user);
+
+        // todo redirect user to profile page, inform user to confirm email address
+
+        return redirect($this->redirectPath());
+    }
+
+    /**
+     * Confirm a user's email address.
+     *
+     * @param  string $token
+     * @return mixed
+     */
+    public function confirmEmail($token)
+    {
+        User::whereToken($token)->firstOrFail()->confirmEmail();
+
+        Session::flash('message', 'You are now confirmed. Please login.');
+
+        return redirect('login');
     }
 }
