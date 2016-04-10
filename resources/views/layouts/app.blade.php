@@ -28,7 +28,6 @@
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            @include('flash')
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -60,7 +59,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->first_name }} <span class="caret"></span>
+                                {{ Auth::user()->userProfile->first_name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -73,7 +72,13 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="container">
+
+        @include('flash')
+
+        @yield('content')
+
+    </div>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

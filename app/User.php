@@ -61,8 +61,12 @@ class User extends Authenticatable
     }
 
 
-    public function UserProfile()
+    public function userProfile()
     {
         return $this->hasOne('App\UserProfile');
+    }
+
+    public function userTypes(){
+        return $this->belongsToMany('App\UserType');
     }
 }

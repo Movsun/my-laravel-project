@@ -38,18 +38,25 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     // Authentication Routes...
-    $this->get('login', 'Auth\AuthController@showLoginForm');
-    $this->post('login', 'Auth\AuthController@login');
-    $this->get('logout', 'Auth\AuthController@logout');
+    Route::get('login', 'Auth\AuthController@showLoginForm');
+    Route::post('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
 
     // Registration Routes...
-    $this->get('register', 'Auth\AuthController@showRegistrationForm');
-    $this->post('register', 'Auth\AuthController@register');
+    Route::get('register', 'Auth\AuthController@showRegistrationForm');
+    Route::post('register', 'Auth\AuthController@register');
     Route::get('register/confirm/{token}', 'Auth\AuthController@confirmEmail');
 
     // Password Reset Routes...
-    $this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-    $this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-    $this->post('password/reset', 'Auth\PasswordController@reset');
+    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+    Route::post('password/reset', 'Auth\PasswordController@reset');
+
+    // user route
+    Route::get('users/{userProfile}', 'User\UserController@show');
+
+
+    // material route
+    Route::get('materials/{material}', 'Material\MaterialController@show');
 
 });

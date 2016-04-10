@@ -14,11 +14,15 @@ class CreateUserProfileTable extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->unique();
+            $table->primary('user_id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('profile_picture');
+            $table->date('date_of_birth');
             $table->string('address');
             $table->string('phone_number');
-            $table->enum('gender', ['female', 'male', 'other']);
+            $table->integer('gender_id');
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->timestamp('last_online');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

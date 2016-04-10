@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Mailers\AppMailer;
 use Session;
+use App\UserProfile;
+use App\UserType;
+
 
 class AuthController extends Controller
 {
@@ -87,6 +90,11 @@ class AuthController extends Controller
         }
 
         $user = User::create($request->all());
+        $userProfile = UserProfile::create($request->all());
+        $user->save();
+        $user->userProfile()->save($userProfile);
+        $userType = UserType::find(1);
+        $user->userTypes()->attach($userType);
 
         $confirmation_code = $user->token;
 
