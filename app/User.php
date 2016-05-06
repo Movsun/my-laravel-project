@@ -69,4 +69,8 @@ class User extends Authenticatable
     public function userTypes(){
         return $this->belongsToMany('App\UserType');
     }
+
+    public function material(){
+      return $this->hasMany('App\Material');
+    }
 }

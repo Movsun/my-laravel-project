@@ -57,6 +57,6 @@ Route::group(['middleware' => 'web'], function () {
 
 
     // material route
-    Route::get('materials/{material}', 'Material\MaterialController@show');
+    Route::resource('materials', 'Material\MaterialController');
 
 });

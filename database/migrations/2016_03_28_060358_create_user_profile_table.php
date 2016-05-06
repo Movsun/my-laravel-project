@@ -18,11 +18,11 @@ class CreateUserProfileTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('profile_picture');
-            $table->date('date_of_birth');
+            $table->date('dob');
             $table->string('address');
             $table->string('phone_number');
             $table->integer('gender_id');
-            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('restrict');
             $table->timestamp('last_online');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

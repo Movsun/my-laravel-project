@@ -8,6 +8,6 @@
 
   {{ $material->user->userProfile->first_name }} <br/>
 
-  <a href='{{ $material->link }}'> url </a>
+  <a href='{{ URL::to($material->link) }}'> {{$material->link}} </a>
 
 @endsection

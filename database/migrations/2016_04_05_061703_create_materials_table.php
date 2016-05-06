@@ -18,7 +18,7 @@ class CreateMaterialsTable extends Migration
             $table->text('description');
             $table->integer('material_type_id');
             $table->integer('user_id');
-            $table->boolean('is_sumitter_author')->default(false);
+            $table->boolean('is_submitter_author')->default(false);
             $table->integer('material_author_id');
             $table->integer('material_format_id');
             $table->text('link');

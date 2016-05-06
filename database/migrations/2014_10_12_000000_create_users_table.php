@@ -17,10 +17,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('verified')->default(false);
-            $table->boolean('activation')->default(true);
+            $table->integer('status');
             $table->string('token')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('status')->references('id')->on('user_status')->onDelete('restrict');
         });
     }
 
