@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MaterialFormatsTableSeeder::class);
         $this->call(UserTypesTableSeeder::class);
         $this->call(AuthorizationsTableSeeder::class);
-
+        $this->call(UserStatusTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
