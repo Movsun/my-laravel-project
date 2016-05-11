@@ -20,7 +20,7 @@ class MaterialTypesTableSeeder extends Seeder
           'Simulation', 'Social Networking Tool', 'Tutorial', 'Workshop and Training Material',
         ];
         foreach ($data as $d) {
-          DB::table('insert')->insert([
+          DB::table('material_types')->insert([
             'name' => $d,
           ]);
         }

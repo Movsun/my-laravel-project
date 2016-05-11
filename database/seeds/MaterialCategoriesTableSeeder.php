@@ -11,8 +11,8 @@ class MaterialCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-          
-        ];
+        // $data = [
+        //
+        // ];
     }
 }

@@ -24,10 +24,10 @@
 |
 */
 
-Route::controllers([
-    'auth' => '\App\Http\Controllers\Auth\AuthController',
-    'password' => '\App\Http\Controllers\Auth\PasswordController',
-]);
+// Route::controllers([
+//     'auth' => '\App\Http\Controllers\Auth\AuthController',
+//     'password' => '\App\Http\Controllers\Auth\PasswordController',
+// ]);
 
 Route::group(['middleware' => 'web'], function () {
 
@@ -58,5 +58,11 @@ Route::group(['middleware' => 'web'], function () {
 
     // material route
     Route::resource('materials', 'Material\MaterialController');
+
+
+    // test controller
+    Route::get('permission', 'TestController@index');
+
+    // Route::get('testme', 'controller@test');
 
 });

@@ -93,10 +93,14 @@ class AuthController extends Controller
         $userProfile = UserProfile::create($request->all());
         $user->save();
         $user->userProfile()->save($userProfile);
-        $userType = UserType::find(1);
-        $user->userTypes()->attach($userType);
+        // $userType = UserType::find(1);
+        // $user->userTypes()->attach($userType);
 
-        $confirmation_code = $user->token;
+        //attach member Role
+        $memberRole = App\Role::where('name', 'member')->first();
+        $user->attachRole($memberRole);
+
+        // $confirmation_code = $user->token;
 
         $mailer->sendEmailConfirmationTo($user);
 
