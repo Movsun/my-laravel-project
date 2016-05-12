@@ -66,3 +66,8 @@ Route::group(['middleware' => 'web'], function () {
     // Route::get('testme', 'controller@test');
 
 });
+
+
+Route::resource('userProfiles', 'UserProfileController');
+
+Route::resource('genders', 'GenderController');
